@@ -8,17 +8,21 @@
 import SwiftUI
 
 struct ContentView: View {
+	
+	
+	// MARK: - body
+	
 	var body: some View {
-		VStack {
-			Image(systemName: "globe")
-				.imageScale(.large)
-				.foregroundStyle(.tint)
-			Text("Hello, world!")
-		}
-		.padding()
+		CardView()
 	}
 }
 
-#Preview {
-	ContentView()
+
+// MARK: - preview
+
+struct 	ContentView_Previews: PreviewProvider {
+	static var previews: some View {
+		ContentView()
+			.previewDevice("iPhone 16 Pro")
+	}
 }
