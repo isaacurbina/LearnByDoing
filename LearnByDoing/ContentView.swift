@@ -10,13 +10,18 @@ import SwiftUI
 struct ContentView: View {
 	
 	
+	// MARK: - properties
+	
+	var cards: [Card] = cardData
+	
+	
 	// MARK: - body
 	
 	var body: some View {
 		ScrollView(.horizontal, showsIndicators: false) {
 			HStack(alignment: .center, spacing: 20) {
-				ForEach(0..<6) {item in
-					CardView()
+				ForEach(cards) { card in
+					CardView(card: card)
 				}
 			} // HStack
 		} // ScrollView
@@ -28,7 +33,7 @@ struct ContentView: View {
 
 struct 	ContentView_Previews: PreviewProvider {
 	static var previews: some View {
-		ContentView()
+		ContentView(cards: cardData)
 			.previewDevice("iPhone 16 Pro")
 	}
 }
