@@ -12,6 +12,7 @@ struct CardView: View {
 	
 	// MARK: - properties
 	
+	var card: Card
 	var gradient: [Color] = [Color("Color01"), Color("Color02")]
 	
 	
@@ -19,16 +20,16 @@ struct CardView: View {
 	
 	var body: some View {
 		ZStack {
-			Image("developer-no1")
+			Image(card.imageName)
 			
 			VStack {
-				Text("SwiftUI")
+				Text(card.title)
 					.font(.largeTitle)
 					.fontWeight(.heavy)
 					.foregroundColor(.white)
 					.multilineTextAlignment(.center)
 				
-				Text("Better apps. Less code.")
+				Text(card.headline)
 					.fontWeight(.light)
 					.foregroundColor(.white)
 					.italic()
@@ -39,7 +40,7 @@ struct CardView: View {
 				print("Button was tapped.")
 			}) {
 				HStack {
-					Text("Learn".uppercased())
+					Text(card.callToAction.uppercased())
 						.fontWeight(.heavy)
 						.foregroundColor(.white)
 						.accentColor(.white)
@@ -51,16 +52,25 @@ struct CardView: View {
 				} // HStack
 				.padding(.vertical)
 				.padding(.horizontal, 24)
-				.background(LinearGradient(gradient: Gradient(colors: gradient), startPoint: .leading, endPoint: .trailing))
+				.background(LinearGradient(gradient: Gradient(colors: card.gradientColors), startPoint: .leading, endPoint: .trailing))
 				.clipShape(Capsule())
-				.shadow(color: Color("ColorShadow"), radius: 6, x: 0, y: 3)
+				.shadow(
+					color: Color("ColorShadow"),
+					radius: 6, x: 0, y: 3
+				)
 				
 			} // Button
 			.offset(y: 210)
 			
 		} // ZStack
 		.frame(width: 335, height: 545)
-		.background(LinearGradient(gradient: Gradient(colors: gradient), startPoint: .top, endPoint: .bottom))
+		.background(
+			LinearGradient(
+				gradient: Gradient(colors: card.gradientColors),
+				startPoint: .top,
+				endPoint: .bottom
+			)
+		)
 		.cornerRadius(16)
 		.shadow(radius: 8)
 	}
@@ -71,7 +81,7 @@ struct CardView: View {
 
 struct CardView_Previews: PreviewProvider {
 	static var previews: some View {
-		CardView()
+		CardView(card: cardData[1])
 			.previewLayout(.sizeThatFits)
 	}
 }
