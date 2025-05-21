@@ -13,7 +13,8 @@ struct CardView: View {
 	// MARK: - properties
 	
 	var card: Card
-	var gradient: [Color] = [Color("Color01"), Color("Color02")]
+	var hapticImpact = UIImpactFeedbackGenerator(style: .heavy)
+	
 	@State private var fadeIn: Bool = false
 	@State private var moveDownward: Bool = false
 	@State private var moveUpward: Bool = false
@@ -42,6 +43,7 @@ struct CardView: View {
 			
 			Button(action: {
 				playSound(sound: "sound-chime", type: "mp3")
+				hapticImpact.impactOccurred()
 			}) {
 				HStack {
 					Text(card.callToAction.uppercased())

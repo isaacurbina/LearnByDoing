@@ -22,7 +22,7 @@ struct ContentView: View {
 			HStack(alignment: .center, spacing: 20) {
 				ForEach(cards) { card in
 					CardView(card: card)
-				}
+				} // ForEach
 			} // HStack
 		} // ScrollView
 	}
